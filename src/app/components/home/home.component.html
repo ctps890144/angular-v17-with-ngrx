@@ -1,8 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="w-100">篩選器</div>
+    <div class="w-100">
+      <select [(ngModel)]="categoryFilter">
+        @for (c of categoryList$ | async; track c) {
+        <option [ngValue]="c">{{ c.name }}</option>
+        }
+      </select>
+    </div>
   </div>
   <div class="row">
+    <div class="w-20 w-md-10">{{ allLoc.length }}</div>
     <div class="w-20 w-md-10 ms-auto clickable">上一頁</div>
     <div class="w-20 w-md-10 clickable">下一頁</div>
   </div>
