@@ -1,0 +1,7 @@
+.header-item {
+  padding: 8px;
+
+  @media (min-width: 768px) {
+    padding: 15px;
+  }
+}
