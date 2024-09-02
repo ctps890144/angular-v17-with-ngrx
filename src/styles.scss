@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
 
 .container,
 .container-fluid,
@@ -7,11 +10,7 @@
 .container-lg,
 .container-md,
 .container-sm {
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
   width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
 }
@@ -56,20 +55,12 @@
 @for $i from 1 through 10 {
   .w {
     &-#{$i * 10} {
-      @media (max-width: 767.98px) {
-        width: $i * 10%;
-      }
+      width: $i * 10%;
     }
 
     &-md-#{$i * 10} {
-      @media (min-width: 768px) AND (max-width: 991.98px) {
-        width: $i * 10%;
-      }
-    }
-
-    &-lg-#{$i * 10} {
-      @media (min-width: 992px) {
-        width: $i * 10%;
+      @media (min-width: 768px) {
+        width: $i * 10% !important;
       }
     }
   }
@@ -85,6 +76,20 @@
 
 .me-auto {
   margin-right: auto;
+}
+
+.bg {
+  &-white {
+    background-color: white;
+  }
+
+  &-blue {
+    background-color: aliceblue;
+  }
+
+  &-skin {
+    background-color: wheat;
+  }
 }
 
 .clickable {
