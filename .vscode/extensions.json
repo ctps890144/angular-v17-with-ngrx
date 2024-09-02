@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "angular.ng-template",
+        "EditorConfig.EditorConfig",
+		"doggy8088.angular-extension-pack",
+        "esbenp.prettier-vscode"
+    ]
+}
