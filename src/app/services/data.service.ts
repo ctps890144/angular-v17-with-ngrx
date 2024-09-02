@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import type { FavoriteLoc } from '../models/common';
 import { ApiService } from './api.service';
 
@@ -7,9 +7,11 @@ import { ApiService } from './api.service';
   providedIn: 'root',
 })
 export class DataService {
+  allLoc: FavoriteLoc[] = [];
+
   constructor(private api: ApiService) {}
 
-  getAll() {
+  initAllData() {
     return this.api.getAll().pipe(
       map((it) => {
         return it.data;
@@ -20,7 +22,8 @@ export class DataService {
 
           return <FavoriteLoc>{ id, name, address, category, nickname: '' };
         });
-      })
+      }),
+      tap((it) => (this.allLoc = it ?? []))
     );
   }
 }
