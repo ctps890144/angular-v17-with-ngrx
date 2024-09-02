@@ -1,1 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container,
+  .container-md,
+  .container-sm {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1140px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    flex-shrink: 0;
+    max-width: 100%;
+  }
+}
+
+@for $i from 1 through 10 {
+  .w {
+    &-#{$i * 10} {
+      @media (max-width: 767.98px) {
+        width: $i * 10%;
+      }
+    }
+
+    &-md-#{$i * 10} {
+      @media (min-width: 768px) AND (max-width: 991.98px) {
+        width: $i * 10%;
+      }
+    }
+
+    &-lg-#{$i * 10} {
+      @media (min-width: 992px) {
+        width: $i * 10%;
+      }
+    }
+  }
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.ms-auto {
+  margin-left: auto;
+}
+
+.me-auto {
+  margin-right: auto;
+}
+
+.clickable {
+  cursor: pointer;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
