@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { shareReplay, Subject } from 'rxjs';
+import { BehaviorSubject, shareReplay, Subject } from 'rxjs';
 import type { FavoriteLoc } from '../models/common';
 
 @Injectable({
@@ -9,7 +9,13 @@ export class FavoriteService {
   currFavLoc$: Subject<FavoriteLoc | null> = new Subject();
   getCurrFavLoc$ = this.currFavLoc$.asObservable().pipe(shareReplay(1));
 
-  constructor() {}
+  allFav: FavoriteLoc[] = [];
+  currAllFav = new BehaviorSubject<FavoriteLoc[]>([]);
+  getAllFav$ = this.currAllFav.asObservable().pipe(shareReplay(1));
+
+  constructor() {
+    this.currAllFav.next(this.getInfo());
+  }
 
   get storageItem() {
     return 'favs';
@@ -17,6 +23,7 @@ export class FavoriteService {
 
   setInfo(info: FavoriteLoc[]) {
     localStorage.setItem(this.storageItem, JSON.stringify(info));
+    this.currAllFav.next(info ?? []);
   }
 
   getInfo(): FavoriteLoc[] {
@@ -55,5 +62,6 @@ export class FavoriteService {
 
   removeInfo() {
     localStorage.removeItem(this.storageItem);
+    this.currAllFav.next([]);
   }
 }

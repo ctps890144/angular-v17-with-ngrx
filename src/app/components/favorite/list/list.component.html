@@ -1,1 +1,15 @@
-<p>list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="w-40">名稱</div>
+    <div class="w-40">地點</div>
+    <div class="w-20">操作</div>
+  </div>
+  @for (loc of allFav$ | async; track loc; let idx=$index) {
+  <div class="row">
+    <div class="w-40">{{ !loc.nickname ? '地點' + (idx + 1) : loc.nickname }}</div>
+    <div class="w-40 bg-skin">{{ loc.name }}</div>
+    <div class="w-10 bg-white clickable">編輯</div>
+    <div class="w-10 bg-white clickable" (click)="remove(loc.id)">刪除</div>
+  </div>
+  }
+</div>
