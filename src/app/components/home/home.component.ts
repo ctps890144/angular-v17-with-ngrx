@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { flatMap, from, map, switchMap, toArray } from 'rxjs';
+import { Component, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { combineLatest, flatMap, from, map, of, switchMap, tap, toArray } from 'rxjs';
 import type { PureOption } from 'src/app/models/common';
 import { DataService } from 'src/app/services/data.service';
 
@@ -19,7 +20,8 @@ export class HomeComponent {
     })
   );
 
-  categoryFilter: PureOption | undefined = undefined;
+  categoryFilter = signal<PureOption | undefined>(undefined);
+  categoryFilter$ = toObservable(this.categoryFilter).pipe(tap((el) => console.log(el)));
 
   constructor(private dataService: DataService) {
     if (this.dataService.allLoc.length === 0) {
@@ -27,7 +29,11 @@ export class HomeComponent {
     }
   }
 
-  get allLoc() {
-    return this.dataService.allLoc;
+  get allLoc$() {
+    return combineLatest([this.dataService.getAllLoc$, this.categoryFilter$]).pipe(
+      switchMap(([list, category]) => {
+        return of(!category ? list : list.filter((el) => el.category.some((it) => it.id === category.id)));
+      })
+    );
   }
 }

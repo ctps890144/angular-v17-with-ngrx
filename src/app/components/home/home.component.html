@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="w-20 w-md-10">{{ allLoc.length }}</div>
+    <div class="w-20 w-md-10">{{ '頁數' }}</div>
     <div class="w-20 w-md-10 ms-auto clickable">上一頁</div>
     <div class="w-20 w-md-10 clickable">下一頁</div>
   </div>
@@ -18,7 +18,7 @@
     <div class="w-80">地點</div>
     <div class="w-20">操作</div>
   </div>
-  @for (loc of allLoc; track loc) {
+  @for (loc of allLoc$ | async; track loc) {
   <div class="row">
     <div class="w-80">
       <div class="row">
