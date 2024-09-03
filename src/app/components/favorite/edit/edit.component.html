@@ -1,1 +1,15 @@
-<p>edit works!</p>
+<div class="container">
+  <ng-container *ngIf="fav$ | async as fav">
+    <div class="row">
+      <div class="w-100">
+        <form class="w-100" [formGroup]="form">
+          <input type="text" formControlName="nickname" class="form-control" placeholder="修改名稱" />
+        </form>
+      </div>
+      <div class="w-100 bg-red txt-white" *ngIf="f.nickname.invalid">資料填寫不完整</div>
+      <div class="w-100">地點：{{ fav.name }}</div>
+      <div class="w-100">地址：{{ fav.address }}</div>
+      <div class="w-100"><button (click)="save(fav)">儲存</button></div>
+    </div>
+  </ng-container>
+</div>

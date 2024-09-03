@@ -8,7 +8,7 @@
   <div class="row">
     <div class="w-40">{{ !loc.nickname ? '地點' + (idx + 1) : loc.nickname }}</div>
     <div class="w-40 bg-skin">{{ loc.name }}</div>
-    <div class="w-10 bg-white clickable">編輯</div>
+    <div class="w-10 bg-white clickable" (click)="edit(loc)">編輯</div>
     <div class="w-10 bg-white clickable" (click)="remove(loc.id)">刪除</div>
   </div>
   }

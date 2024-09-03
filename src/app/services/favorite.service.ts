@@ -6,8 +6,8 @@ import type { FavoriteLoc } from '../models/common';
   providedIn: 'root',
 })
 export class FavoriteService {
-  currFavLoc$: Subject<FavoriteLoc | null> = new Subject();
-  getCurrFavLoc$ = this.currFavLoc$.asObservable().pipe(shareReplay(1));
+  currFavLoc: Subject<FavoriteLoc | null> = new Subject();
+  getCurrFavLoc$ = this.currFavLoc.asObservable().pipe(shareReplay(1));
 
   allFav: FavoriteLoc[] = [];
   currAllFav = new BehaviorSubject<FavoriteLoc[]>([]);
