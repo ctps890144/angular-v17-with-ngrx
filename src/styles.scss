@@ -78,6 +78,12 @@ body {
   margin-right: auto;
 }
 
+.txt {
+  &-white {
+    color: white;
+  }
+}
+
 .bg {
   &-white {
     background-color: white;
@@ -89,6 +95,10 @@ body {
 
   &-skin {
     background-color: wheat;
+  }
+
+  &-red {
+    background-color: red;
   }
 }
 
