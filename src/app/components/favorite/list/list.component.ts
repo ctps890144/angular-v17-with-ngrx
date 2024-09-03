@@ -13,7 +13,7 @@ export class ListComponent {
   readonly path = appPath;
 
   constructor(private router: Router, private favoriteService: FavoriteService) {
-    this.favoriteService.currFavLoc.next(null);
+    this.favoriteService.currFavLoc.set(null);
   }
 
   get allFav$() {
@@ -25,7 +25,7 @@ export class ListComponent {
   }
 
   edit(obj: FavoriteLoc) {
-    this.favoriteService.currFavLoc.next(obj);
+    this.favoriteService.currFavLoc.set(obj);
     this.router.navigate(['/', this.path.favorite, this.path.favoriteFlow.edit]);
   }
 }

@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, shareReplay, Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { BehaviorSubject, shareReplay } from 'rxjs';
 import type { FavoriteLoc } from '../models/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoriteService {
-  currFavLoc: Subject<FavoriteLoc | null> = new Subject();
-  getCurrFavLoc$ = this.currFavLoc.asObservable().pipe(shareReplay(1));
+  currFavLoc = signal<FavoriteLoc | null>(null);
+  getCurrFavLoc$ = toObservable(this.currFavLoc).pipe();
 
   allFav: FavoriteLoc[] = [];
   currAllFav = new BehaviorSubject<FavoriteLoc[]>([]);
