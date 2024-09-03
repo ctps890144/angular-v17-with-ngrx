@@ -16,8 +16,7 @@ export class FavoriteService {
   }
 
   setInfo(info: FavoriteLoc[]) {
-    let ciphertext = btoa(JSON.stringify(info));
-    localStorage.setItem(this.storageItem, ciphertext);
+    localStorage.setItem(this.storageItem, JSON.stringify(info));
   }
 
   getInfo(): FavoriteLoc[] {
@@ -26,13 +25,13 @@ export class FavoriteService {
 
     if (storageObj !== null && storageObj !== '') {
       try {
-        info = JSON.parse(atob(storageObj));
+        info = JSON.parse(storageObj);
       } catch (error) {
         info = [];
       }
     }
 
-    return info;
+    return info ?? [];
   }
 
   add(obj: FavoriteLoc) {
