@@ -5,7 +5,7 @@
         <select [(ngModel)]="categoryFilter">
           <option [ngValue]="undefined">全部</option>
           @for (c of categoryList$ | async; track c) {
-          <option [ngValue]="c">{{ c.name }}</option>
+            <option [ngValue]="c">{{ c.name }}</option>
           }
         </select>
       </div>
@@ -24,16 +24,18 @@
       <div class="w-80">地點</div>
       <div class="w-20">操作</div>
     </div>
-    @for (loc of allLoc$ | async; track loc; let idx=$index) { @if (idx >= ((page - 1) * 10) && idx < (page * 10)) {
-    <div class="row">
-      <div class="w-80">
+    @for (loc of allLoc$ | async; track loc; let idx = $index) {
+      @if (idx >= (page - 1) * 10 && idx < page * 10) {
         <div class="row">
-          <div class="w-100 w-md-40 bg-skin">{{ loc.name }}</div>
-          <div class="w-100 w-md-60 bg-blue">{{ loc.address }}</div>
+          <div class="w-80">
+            <div class="row">
+              <div class="w-100 w-md-40 bg-skin">{{ loc.name }}</div>
+              <div class="w-100 w-md-60 bg-blue">{{ loc.address }}</div>
+            </div>
+          </div>
+          <div class="w-20 bg-white clickable" (click)="addFav(loc)">加入最愛</div>
         </div>
-      </div>
-      <div class="w-20 bg-white clickable" (click)="addFav(loc)">加入最愛</div>
-    </div>
-    } }
+      }
+    }
   </ng-container>
 </div>

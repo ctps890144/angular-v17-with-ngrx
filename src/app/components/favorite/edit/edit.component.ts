@@ -18,7 +18,10 @@ export class EditComponent {
     nickname: new FormControl('', [Validators.required]),
   });
 
-  constructor(private router: Router, private favoriteService: FavoriteService) {
+  constructor(
+    private router: Router,
+    private favoriteService: FavoriteService
+  ) {
     const fav = this.favoriteService.currFavLoc();
     if (!fav) {
       this.router.navigate(['/', this.path.favorite]);

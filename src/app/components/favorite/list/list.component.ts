@@ -12,7 +12,10 @@ import { FavoriteService } from 'src/app/services/favorite.service';
 export class ListComponent {
   readonly path = appPath;
 
-  constructor(private router: Router, private favoriteService: FavoriteService) {
+  constructor(
+    private router: Router,
+    private favoriteService: FavoriteService
+  ) {
     this.favoriteService.currFavLoc.set(null);
   }
 
